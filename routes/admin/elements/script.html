@@ -1,0 +1,42 @@
+<script>
+    const languagespanish = document.getElementById("languagespanish")
+    const languagenglish = document.getElementById("languagenglish")
+    const languagearabic = document.getElementById("languagearabic")
+    const languagefrench = document.getElementById("languagefrench")
+
+    function enableDisableSubmitButton(value){
+        let btnSubmit = document.querySelector("#submit")
+        btnSubmit.disabled = value
+        if (btnSubmit.disabled == true){
+            btnSubmit.classList.remove("bg-blue-700", "hover:bg-blue-800")
+            btnSubmit.classList.add("bg-gray-400", "hover:bg-gray-600")
+        }else if(btnSubmit.disabled == false){
+            btnSubmit.classList.remove("bg-gray-400", "hover:bg-gray-600")
+            btnSubmit.classList.add("bg-blue-700", "hover:bg-blue-800")
+        }
+    }
+    
+    function sendMsg(msg, value){
+        if (value == true){
+            document.getElementById("msg").classList.remove("text-red-900")
+            document.getElementById("msg").classList.remove("bg-red-200")
+            document.getElementById("msg").classList.add("text-green-900")
+            document.getElementById("msg").classList.add("bg-green-200")
+            document.getElementById("msg").innerText = msg
+        }else if(value == false){
+            document.getElementById("msg").classList.remove("text-green-900")
+            document.getElementById("msg").classList.remove("bg-green-200")
+            document.getElementById("msg").classList.add("text-red-900")
+            document.getElementById("msg").classList.add("bg-red-200")
+            document.getElementById("msg").innerText = msg
+        }
+    }
+
+    window.addEventListener("load", (event) => {
+
+        if (languagespanish.value == "" || languagenglish.value == "" || languagearabic.value == "" || languagefrench.value == "" || password.value == ""){
+            sendMsg("Please Don't let fileds empty", false)
+        }
+    })
+
+</script>

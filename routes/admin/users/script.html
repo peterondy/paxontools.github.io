@@ -1,0 +1,90 @@
+<script>
+    const email = document.getElementById("email")
+    const username = document.getElementById("username")
+    const fullname = document.getElementById("fullname")
+    const useraccess = document.getElementById("useraccess")
+    const password = document.getElementById("password")
+
+    //change username style to uppercase
+    function changeToCapitalize(){
+        document.getElementById("fullname").style.textTransform="capitalize"
+    }
+    changeToCapitalize()
+
+    //filter username to strings only
+
+    document.getElementById('username').addEventListener("keyup",()=>{
+        const regExpStrings = /^[A-Za-z]*$/
+        if(Boolean(document.getElementById('username').value.match(regExpStrings)) == true){
+            enableDisableSubmitButton(false)
+            sendMsg("Username are true", true)
+        }
+        else if(Boolean(document.getElementById('username').value.match(regExpStrings)) == false){
+            enableDisableSubmitButton(true)
+            sendMsg("Username not should be contain only character A-Z a-z", false)
+        }
+    })
+
+    function enableDisableSubmitButton(value){
+        let btnSubmit = document.querySelector("#submit")
+        btnSubmit.disabled = value
+        if (btnSubmit.disabled == true){
+            btnSubmit.classList.remove("bg-blue-700", "hover:bg-blue-800")
+            btnSubmit.classList.add("bg-gray-400", "hover:bg-gray-600")
+        }else if(btnSubmit.disabled == false){
+            btnSubmit.classList.remove("bg-gray-400", "hover:bg-gray-600")
+            btnSubmit.classList.add("bg-blue-700", "hover:bg-blue-800")
+        }
+    }
+    //enableDisableSubmitButton(true)
+    //enableDisableSubmitButton(false)
+    function sendMsg(msg, value){
+        if (value == true){
+            document.getElementById("msg").classList.remove("text-red-900")
+            document.getElementById("msg").classList.remove("bg-red-200")
+            document.getElementById("msg").classList.add("text-green-900")
+            document.getElementById("msg").classList.add("bg-green-200")
+            document.getElementById("msg").innerText = msg
+        }else if(value == false){
+            document.getElementById("msg").classList.remove("text-green-900")
+            document.getElementById("msg").classList.remove("bg-green-200")
+            document.getElementById("msg").classList.add("text-red-900")
+            document.getElementById("msg").classList.add("bg-red-200")
+            document.getElementById("msg").innerText = msg
+        }
+    }
+
+    window.addEventListener("load", (event) => {
+        const email = document.getElementById("email")
+        const username = document.getElementById("username")
+        const fullname = document.getElementById("fullname")
+        const useraccess = document.getElementById("useraccess")
+        const password = document.getElementById("password")
+        if (email.value == "" || username.value == "" || fullname.value == "" || useraccess.value == "" || password.value == ""){
+            sendMsg("Please Don't let fileds empty", false)
+        }
+    });
+    document.getElementById("email").addEventListener("keyup", ()=>{
+        const regExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if (document.getElementById("email").value == ""){
+            sendMsg("Email field is empty", false)
+            enableDisableSubmitButton(true)
+        }else if(document.getElementById("email").value.match(regExp)){
+            sendMsg("Email format is correct", true)
+            enableDisableSubmitButton(false)
+        }else{
+            sendMsg("Please enter a valid email address", false)
+            enableDisableSubmitButton(true)
+        }
+    })
+
+    document.getElementById("useraccess").addEventListener("change", ()=>{
+        if (document.getElementById("useraccess").value == ""){
+            sendMsg("User access field is empty", false)
+            enableDisableSubmitButton(true)
+        }else{
+            sendMsg("User access field is correct", true)
+            enableDisableSubmitButton(false) 
+        }
+    }) 
+</script>

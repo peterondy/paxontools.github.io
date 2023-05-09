@@ -1,0 +1,60 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='static.css')
+    script(src='https://cdn.tailwindcss.com')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css')
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin='')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css', integrity='sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==', crossorigin='anonymous', referrerpolicy='no-referrer')
+    link(href='https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&family=Shantell+Sans:wght@300&family=Tajawal:wght@200;500;900&display=swap', rel='stylesheet')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css', rel='stylesheet')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js', integrity='sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==', crossorigin='anonymous', referrerpolicy='no-referrer')
+    script(src='https://code.jquery.com/jquery-3.6.3.js', integrity='sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=', crossorigin='anonymous')
+    link(rel='shortcut icon', href='/logo/logo-50.png', type='image/x-icon')
+    title Paxon Tools Platform | Sign In Page
+  body
+    section.bg-gray-50(class='dark:bg-gray-900')
+      .flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto(class='md:h-screen lg:py-0')
+        a.flex.items-center.mb-6.text-2xl.font-semibold.text-purple-900(href='/', class='dark:text-white')
+          | Paxon Tools
+        | &#x9;&#x9;&#x9;
+        .w-full.bg-white.rounded-lg.shadow(class='dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700')
+          .p-6.space-y-4(class='md:space-y-6 sm:p-8')
+            h1.text-xl.font-bold.leading-tight.tracking-tight.text-purple-900(class='md:text-2xl dark:text-white')
+              | Sign in to your account
+            | &#x9;&#x9;&#x9;&#x9;&#x9;
+            form.space-y-4(class='md:space-y-6', action='/login/', method='POST')
+              div
+                label.block.mb-2.text-sm.font-medium.text-purple-900(for='username', class='dark:text-white') Your Username
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                input.bg-gray-50.border.border-gray-300.text-purple-900.rounded-lg.block.w-full(type='text', name='username', class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='johndoe', required='')
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              div
+                label.block.mb-2.text-sm.font-medium.text-purple-900(for='password', class='dark:text-white') Password
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                input#password.bg-gray-50.border.border-gray-300.text-purple-900.rounded-lg.block.w-full(type='password', name='password', placeholder='••••••••', class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required='')
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .flex.items-center.justify-between
+                .flex.items-start
+                  .flex.items-center.h-5
+                    input#remember.w-4.h-4.border.border-gray-300.rounded.bg-gray-50(aria-describedby='remember', type='checkbox', class='focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800')
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  .ml-3.text-sm
+                    label.text-gray-500(for='remember', class='dark:text-gray-300') Remember me
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                a.text-sm.font-medium.text-primary-600(href='/forget-password/', class='hover:underline dark:text-primary-500') Forgot password?
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              if msg
+                .ml-3.text-sm.text-center.floay-left
+                h1.text-red-950.bg-red-200.py-2.rounded-lg.text-center(class='dark:text-gray-300')
+                    span=msg
+              button.w-full.text-white.bg-purple-900.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit', class='hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800') Sign in
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              p.text-sm.font-light.text-gray-500(class='dark:text-gray-400')
+                | Don&rsquo;t have an account yet? 
+                a.font-medium.text-primary-600(href='/register/', class='hover:underline dark:text-primary-500') Sign up

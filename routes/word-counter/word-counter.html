@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'static.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&family=Shantell+Sans:wght@300&family=Tajawal:wght@200;500;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" integrity="sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{% static 'img/hero-background-cloud.png' %}" type="image/x-icon">    
+    <title>Paxon Tools Platform | Word Counter</title>
+</head>
+<body>
+        
+    <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+        <a href="/" class="flex items-center">
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white" alt="Paxon Tools Title">Paxon Tools</span>
+        </a>
+        <div class="flex md:order-2">
+            <a href="/login/" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:bg-slate-200 px-4 py-1 pt-2 mt-1 mr-4 rounded-md">Login</a>
+            <a href="/signup/" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</a>
+            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+            <a href="/" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
+            </li>
+            <li>
+            <a href="tools/" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tools</a>
+            </li>
+            <li>
+            <a href="contact/" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+            </li>
+            <li>
+            <a href="blog/" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
+            </li>
+            <li>
+            
+            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-0" style="margin-top: -1rem;" type="button">Others<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <!-- Dropdown menu -->
+            <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                <li>
+                    <a href="#about" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About</a>
+                </li>
+                <li>
+                    <a href="#services" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Services</a>
+                </li>
+                <li>
+                    <a href="#pricing" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pricing</a>
+                </li>
+                <li>
+                    <a href="#contact" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact</a>
+                </li>
+                </ul>
+            </div>
+
+        </ul>
+        </div>
+        </div>
+    </nav>
+
+    <main class="w-full h-full mt-5 pt-5">
+        <div class="container w-full h-full pt-5 mt-5" style="width: 80%; margin-left: 10%; margin-right: 10%;">
+            <h1 class="text-center p-5">Count Words. And get informations for your text</h1>
+                <div id="left-main" class="float-left w-4/5">
+                    <div id="parameters" class="w-full" style="width: 50%;height: 3rem;">
+                        <div class="w-30 float-left mr-5">
+                            <select id="select" onchange="caseStyle()" class="float-left bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected value="default">Case</option>
+                                <option value="uppercase">Upper Case</option>
+                                <option value="lowercase">Lower Case</option>
+                                <option value="capitalize">Capitalize</option>
+                            </select>
+                        </div>
+                        <div class="p-2 float-left">
+                            <!--<i id="arrow-left" class="bi bi-arrow-left text-2xl cursor-pointer"></i>
+                            <i id="arrow-right" class="bi bi-arrow-right text-2xl cursor-pointer"></i>-->
+                            <i id="clear" class="bi bi-x-circle text-2xl cursor-pointer float-right"></i>
+                        </div>
+                     </div>
+                    <textarea id="text-aria" cols="80" rows="15" class="float-left block p-2 mb-5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your Text here" ></textarea>
+                    <div id="infos">
+                        <div class="w-1/2 float-left pb-5" id="word-count"><b>0 Words</b></div>
+                        <div class="w-1/2 float-left pb-5" id="characters-count"><b>0 Characters</b></div>
+                    </div>
+                </div>
+                <div id="right-main" class="float-right w-1/5">
+                    <div id="ads" class="w-full hover:opacity-90">
+                        <a href="/">
+                            <img src="{% static 'img/hero-background-cloud.png' %}" alt="Ads Image" style="width: 100%;height: 25rem">
+                        </a>
+                    </div>
+                </div>
+        </div>
+    </main>
+     
+    <footer class="bg-white dark:bg-gray-900 float-left w-full">
+
+        <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
+            <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a href="/"><span style="font-family: 'Shantell Sans', cursive;" class="text-purple-500">Paxon Tools</span></a>. All Rights Reserved.
+            </span>
+            <div class="flex mt-4 space-x-6 sm:justify-center md:mt-0">
+                <a href="/" class="text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl" target="_blank">
+                    <i class="bi bi-globe-americas text-2xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/ramziben" class="text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl" target="_blank">
+                    <i class="bi bi-linkedin text-2xl"></i>
+                </a>
+                <a href="https://github.com/peterondy/" class="text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl" target="_blank">
+                    <i class="bi bi-github text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl" target="_blank">
+                    <i class="bi bi-whatsapp text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl" target="_blank">
+                    <i class="bi bi-telegram text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl" target="_blank">
+                    <i class="bi bi-telephone text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script >
+        const textaria = document.querySelector('#text-aria')
+        const select = document.getElementById('select')
+        const arrowLeft = document.getElementById('arrow-left')
+        const arrowRight = document.getElementById('arrow-right')
+        const clear = document.getElementById('clear')
+        let characters
+        let words
+
+        function clearTextAria(){
+            clear.addEventListener('click', function () {
+                document.getElementById('text-aria').value = ''
+                document.getElementById('text-aria').focus();
+            });
+        }
+        clearTextAria()
+
+        function charCounter(){
+            textaria.addEventListener('keyup', ()=>{
+                characters = textaria.value.length
+                document.getElementById('characters-count').innerHTML = `<b>` + characters + ` Characters</b>`
+            })
+        }
+        charCounter()
+
+        function wordsCounter(){
+            textaria.addEventListener('keyup', ()=>{
+
+                if(textaria.value.length != 0){
+                    if ((textaria.value.match(/\S+/g)) != null) {
+                        words = textaria.value.match(/\S+/g).length;
+                    }
+                }else if(textaria.value.length == 0){
+                    words = 0
+                }
+
+                document.getElementById('word-count').innerHTML = `<b>` + words + ` Words</b>`
+                console.log(words)
+            })
+
+        }
+        wordsCounter()
+
+        function caseStyle(){
+            if(document.getElementById('select').value == "uppercase"){
+                textaria.style.textTransform="uppercase"
+            }
+            else if(document.getElementById('select').value == "lowercase"){
+                textaria.style.textTransform="lowercase"
+            }
+            else if(document.getElementById('select').value == "capitalize"){
+                textaria.style.textTransform="capitalize"
+            }
+        }
+    </script>
+</body>
+</html>

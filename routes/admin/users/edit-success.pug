@@ -1,0 +1,25 @@
+doctype html
+// component
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css')
+    title Edit Success Page
+  body
+    // component
+    // MDI Icons
+    // Page Container
+    .grid.items-center.justify-center.min-h-screen.bg-white.py-35.pt-15
+      // Error Container
+      .flex.flex-col.items-center
+        .text-indigo-500.font-bold.text-7xl
+        .font-bold.text-3xl.mt-10(class='xl:text-7xl lg:text-6xl md:text-5xl')
+            h1=msg
+      br
+      div
+        a.text-purple-900.bg-purple-200.px-10.py-2.float-left.mr-10.rounded-xl(href='/', class='hover:bg-purple-300') Home
+        a.text-blue-900.bg-blue-200.px-10.py-2.float-left.rounded-xl(href='/contact', class='hover:bg-blue-300') Contact

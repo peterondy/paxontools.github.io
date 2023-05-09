@@ -1,0 +1,569 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href="{% static 'static.css' %}")
+    script(src='https://cdn.tailwindcss.com')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css')
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin='')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css', integrity='sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==', crossorigin='anonymous', referrerpolicy='no-referrer')
+    link(href='https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&family=Shantell+Sans:wght@300&family=Tajawal:wght@200;500;900&display=swap', rel='stylesheet')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css', rel='stylesheet')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js', integrity='sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==', crossorigin='anonymous', referrerpolicy='no-referrer')
+    link(rel='shortcut icon', href='/logo/logo-50.png', type='image/x-icon')
+    title Paxon Tools Platform
+  body
+    nav.bg-white.px-2.fixed.w-full.z-20.top-0.left-0.border-b.border-gray-200(class='sm:px-4 py-2.5 dark:bg-gray-900 dark:border-gray-600')
+      .container.flex.flex-wrap.items-center.justify-between.mx-auto
+        a.flex.items-center(href='/')
+          img.w-5-h-2(src='/logo/logo-200-150.png', alt='Paxon Tools', style='width: 12rem !important;height: 6rem !important;padding: 0 !important;margin: 0 !important;')
+        .flex(class='md:order-2')
+          a.text-sm.font-medium.text-blue-600.px-4.py-1.pt-2.mt-1.mr-4.rounded-md(href='/login', class='dark:text-blue-500 hover:bg-slate-200') Login
+          a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-5.text-center.mr-3(href='/register', type='button', class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2.5 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Get started
+          button.inline-flex.items-center.p-2.text-sm.text-gray-500.rounded-lg(data-collapse-toggle='navbar-sticky', type='button', class='md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600', aria-controls='navbar-sticky', aria-expanded='false')
+            span.sr-only Open main menu
+            svg.w-6.h-6(aria-hidden='true', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd', d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z', clip-rule='evenodd')
+        #navbar-sticky.items-center.justify-between.hidden.w-full(class='md:flex md:w-auto md:order-1')
+          ul.flex.flex-col.p-4.mt-4.border.border-gray-100.rounded-lg.bg-gray-50(class='md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700')
+            li
+              a.block.py-2.pl-3.pr-4.text-white.bg-blue-700.rounded(href='/', class='md:bg-transparent md:text-blue-700 md:p-0 dark:text-white', aria-current='page') Home
+            li
+              a.block.py-2.pl-3.pr-4.text-gray-700.rounded(href='/tools', class='hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700') Tools
+            li
+              a.block.py-2.pl-3.pr-4.text-gray-700.rounded(href='/contact', class='hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700') Contact
+            li
+              a.block.py-2.pl-3.pr-4.text-gray-700.rounded(href='/blog', class='hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700') Blog
+            li
+              button#dropdownHoverButton.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-4.text-center.inline-flex.items-center.mt-0(data-dropdown-toggle='dropdownHover', data-dropdown-trigger='hover', class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800', style='margin-top: -1rem;', type='button')
+                | Others
+                svg.w-4.h-4.ml-2(aria-hidden='true', fill='none', stroke='currentColor', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                  path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M19 9l-7 7-7-7')
+              // Dropdown menu
+              #dropdownHover.z-10.hidden.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-44(class='dark:bg-gray-700')
+                ul.py-2.text-sm.text-gray-700(class='dark:text-gray-200', aria-labelledby='dropdownHoverButton')
+                  li
+                    a.block.px-4.py-2(href='#about', class='hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white') About
+                  li
+                    a.block.px-4.py-2(href='#services', class='hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white') Services
+                  li
+                    a.block.px-4.py-2(href='#pricing', class='hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white') Pricing
+                  li
+                    a.block.px-4.py-2(href='#contact', class='hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white') Contact
+    main#hero.mt-10.pt-5.h-full
+      #hero-left.mt-10.pt-5.float-left(class='w-1/2')
+        h1.mb-4.text-4xl.font-extrabold.leading-none.tracking-tight.text-gray-900.mx-4.my-2(class='md:text-5xl lg:text-6xl dark:text-white')
+          | Amazing Paxon Tools. Tool number 
+          span.text-blue-600(class='dark:text-blue-500') #1
+          |  To do anything
+        h6.mb-4.text-sm.font-extrabold.leading-none.tracking-tight.text-zinc-500.mx-4.my-2(class='md:text-base lg:text-lg dark:text-white')
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus recusandae inventore in et, aspernatur perspiciatis quae
+          | eaque incidunt dolor dolorem quisquam. Aspernatur maxime incidunt aliquam fugiat quisquam, iste reiciendis labore?
+        a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-5.text-center.mr-3.ml-5(href='/register', type='button', class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2.5 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Get started
+        a.text-xl.font-medium.text-blue-600.px-4.py-1.pt-2.mt-1.mr-4.rounded-md.ml-5(href='/login', class='dark:text-blue-500 hover:text-blue-800')
+          | Login 
+          i.bi.bi-arrow-right
+      #hero-right.mt-5.pt-5.float-right(class='w-1/2')
+        img#hero-right-background(src="", alt='')
+    .container.m-auto(class='w-4/5')
+      section#about.w-full.h-full
+        #about-image.float-left.pt-5(class='w-1/3')
+          img.h-15.rounded-l-3xl(class='w-1/2', src="", alt='')
+        #about-users.float-left.pt-5(class='w-1/3')
+          .flex.justify-center.h-34.mt-5.ml-5
+            .block.max-w-sm.rounded-lg.bg-white.p-6.shadow-lg(class='dark:bg-neutral-700')
+              h5.mb-2.text-xl.font-medium.leading-tight.text-neutral-800(class='dark:text-neutral-50')
+                i.bi.bi-people.text-blue-500
+                |  +500 Users Happy
+              p.mb-4.text-base.text-neutral-600(class='dark:text-neutral-200')
+                | Join to happy users.
+        #about-infos.float-left.pt-5(class='w-1/3')
+          .flex.justify-center.h-34.mt-5.ml-5
+            .block.max-w-sm.rounded-lg.bg-white.p-6.shadow-lg(class='dark:bg-neutral-700')
+              h5.mb-2.text-xl.font-medium.leading-tight.text-neutral-800(class='dark:text-neutral-50')
+                i.bi.bi-gear-wide-connected.text-blue-500
+                |  +15 Tools to use
+              p.mb-4.text-base.text-neutral-600(class='dark:text-neutral-200')
+                | Choose your tool and use it.
+        div(id='about-brands float-left')
+          // ====== Brands Section Start
+          .bg-white(style='padding-top: 15rem;')
+            .container.mx-auto
+              .-mx-4.flex.flex-wrap
+                .w-full.px-4
+                  .flex.flex-wrap.items-center.justify-center
+                    a.mx-4.flex.items-center.justify-center.py-5.text-blue-500(href='javascript:void(0)', class='w-[150px] 2xl:w-[180px]')
+                      i.fa-brands.fa-amazon.h-10.w-full
+                    a.mx-4.flex.items-center.justify-center.py-5.text-blue-500(href='javascript:void(0)', class='w-[150px] 2xl:w-[180px]')
+                      i.fa-brands.fa-aws.h-10.w-full
+                    a.mx-4.flex.items-center.justify-center.py-5.text-blue-500(href='javascript:void(0)', class='w-[150px] 2xl:w-[180px]')
+                      i.fa-brands.fa-google.h-10.w-full
+                    a.mx-4.flex.items-center.justify-center.py-5.text-blue-500(href='javascript:void(0)', class='w-[150px] 2xl:w-[180px]')
+                      i.fa-brands.fa-meta.h-10.w-full
+          // ====== Brands Section End
+      section#pricing
+        section.bg-white(class='dark:bg-gray-900')
+          .py-8.px-4.mx-auto.max-w-screen-xl(class='lg:py-16 lg:px-6')
+            .mx-auto.max-w-screen-md.text-center.mb-8(class='lg:mb-12')
+              h2.mb-4.text-4xl.tracking-tight.font-extrabold.text-gray-900(class='dark:text-white') Designed for business teams like yours
+              p.mb-5.font-light.text-gray-500(class='sm:text-xl dark:text-gray-400')
+                | Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
+            .space-y-8(class='lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0')
+              // Pricing Card
+              .flex.flex-col.p-6.mx-auto.max-w-lg.text-center.text-gray-900.bg-white.rounded-lg.border.border-gray-100.shadow(class='dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white')
+                h3.mb-4.text-2xl.font-semibold Free
+                p.font-light.text-gray-500(class='sm:text-lg dark:text-gray-400') Best option for personal use &amp; for your next project.
+                .flex.justify-center.items-baseline.my-8
+                  span.mr-2.text-5xl.font-extrabold $0
+                  span.text-gray-500(class='dark:text-gray-400') /month
+                // List
+                ul.mb-8.space-y-4.text-left(role='list')
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span No fees or credit card required
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span Ads Included
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Team size: 
+                      span.font-semibold 1 user
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Premium support: 
+                      span.font-semibold 24/7
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Free updates: 
+                      span.font-semibold 6 months
+                a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-5.text-center(href='/register', class='hover:bg-blue-800 focus:ring-4 focus:ring-primary-200 py-2.5 dark:text-white dark:focus:ring-primary-900') Get started
+              // Pricing Card
+              .flex.flex-col.p-6.mx-auto.max-w-lg.text-center.text-gray-900.bg-white.rounded-lg.border.border-gray-100.shadow(class='dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white')
+                h3.mb-4.text-2xl.font-semibold Individual
+                p.font-light.text-gray-500(class='sm:text-lg dark:text-gray-400') Best option for personal use &amp; for your next project.
+                .flex.justify-center.items-baseline.my-8
+                  span.mr-2.text-5xl.font-extrabold $29
+                  span.text-gray-500(class='dark:text-gray-400') /month
+                // List
+                ul.mb-8.space-y-4.text-left(role='list')
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span No ads included
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span No setup, or hidden fees
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Team size: 
+                      span.font-semibold 1 user
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Premium support: 
+                      span.font-semibold 24/7
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Free updates: 
+                      span.font-semibold 6 months
+                a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-5.text-center(href='/register', class='hover:bg-blue-800 focus:ring-4 focus:ring-primary-200 py-2.5 dark:text-white dark:focus:ring-primary-900') Get started
+              // Pricing Card
+              .flex.flex-col.p-6.mx-auto.max-w-lg.text-center.text-gray-900.bg-white.rounded-lg.border.border-gray-100.shadow(class='dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white')
+                h3.mb-4.text-2xl.font-semibold Pro
+                p.font-light.text-gray-500(class='sm:text-lg dark:text-gray-400') Relevant for multiple users, extended &amp; premium support.
+                .flex.justify-center.items-baseline.my-8
+                  span.mr-2.text-5xl.font-extrabold $99
+                  span.text-gray-500(class='dark:text-gray-400', dark:text-gray-400='') /month
+                // List
+                ul.mb-8.space-y-4.text-left(role='list')
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span Individual configuration
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span No setup, or hidden fees
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Team size: 
+                      span.font-semibold 5 users
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Premium support: 
+                      span.font-semibold 24/7
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Free updates: 
+                      span.font-semibold 24 months
+                a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-5.text-center(href='/register', class='hover:bg-blue-800 focus:ring-4 focus:ring-primary-200 py-2.5 dark:text-white dark:focus:ring-primary-900') Get started
+              // Pricing Card
+              .flex.flex-col.p-6.mx-auto.max-w-lg.text-center.text-gray-900.bg-white.rounded-lg.border.border-gray-100.shadow(class='dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white')
+                h3.mb-4.text-2xl.font-semibold
+                  | Pro 
+                  i.bi.bi-plus.text-blue-500
+                p.font-light.text-gray-500(class='sm:text-lg dark:text-gray-400') Best for large scale uses and extended redistribution rights.
+                .flex.justify-center.items-baseline.my-8
+                  span.mr-2.text-5xl.font-extrabold $299
+                  span.text-gray-500(class='dark:text-gray-400') /month
+                // List
+                ul.mb-8.space-y-4.text-left(role='list')
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span Individual configuration
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span No setup, or hidden fees
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Team size: 
+                      span.font-semibold 10 developers
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Premium support: 
+                      span.font-semibold 24/7
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Free updates: 
+                      span.font-semibold 36 months
+                a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-5.text-center(href='/register', class='hover:bg-blue-800 focus:ring-4 focus:ring-primary-200 py-2.5 dark:text-white dark:focus:ring-primary-900') Get started
+              // Pricing Card
+              .flex.flex-col.p-6.mx-auto.max-w-lg.text-center.text-gray-900.bg-white.rounded-lg.border.border-gray-100.shadow(class='dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white')
+                h3.mb-4.text-2xl.font-semibold
+                  | Pro 
+                  i.bi.bi-plus.text-blue-500
+                  i.bi.bi-plus.text-blue-500
+                p.font-light.text-gray-500(class='sm:text-lg dark:text-gray-400') Best for large scale uses and extended redistribution rights.
+                .flex.justify-center.items-baseline.my-8
+                  span.mr-2.text-5xl.font-extrabold $499
+                  span.text-gray-500(class='dark:text-gray-400') /month
+                // List
+                ul.mb-8.space-y-4.text-left(role='list')
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span Individual configuration
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span No setup, or hidden fees
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Team size: 
+                      span.font-semibold 10 users
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Premium support: 
+                      span.font-semibold 24/7
+                  li.flex.items-center.space-x-3
+                    // Icon
+                    svg.flex-shrink-0.w-5.h-5.text-green-500(class='dark:text-green-400', fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                      path(fill-rule='evenodd', d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z', clip-rule='evenodd')
+                    span
+                      | Free updates: 
+                      span.font-semibold 36 months
+                a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-5.text-center(href='/register', class='hover:bg-blue-800 focus:ring-4 focus:ring-primary-200 py-2.5 dark:text-white dark:focus:ring-primary-900') Get started
+      section#testimonials
+        .bg-white(class='dark:bg-gray-900')
+          .py-8.px-4.mx-auto.max-w-screen-xl.text-center(class='lg:py-16 lg:px-6')
+            .mx-auto.max-w-screen-sm
+              h2.mb-4.text-4xl.tracking-tight.font-extrabold.text-gray-900(class='dark:text-white') What Client's Said
+              p.mb-8.font-light.text-gray-500(class='lg:mb-16 sm:text-xl dark:text-gray-400')
+                | Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind
+            |  
+            .grid.mb-8(class='lg:mb-12 lg:grid-cols-2')
+              figure.flex.flex-col.justify-center.items-center.p-8.text-center.bg-gray-50.border-b.border-gray-200(class='md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700')
+                blockquote.mx-auto.mb-8.max-w-2xl.text-gray-500(class='dark:text-gray-400')
+                  h3.text-lg.font-semibold.text-gray-900(class='dark:text-white') Speechless with how easy this was to integrate
+                  p.my-4
+                    | &quot;I recently got my hands on Flowbite Pro, and holy crap, I&apos;m speechless with how easy this was to integrate within my application. Most templates are a pain, code is scattered, and near impossible to theme.
+                  p.my-4
+                    | Flowbite has code in one place and I&apos;m not joking when I say it took me a matter of minutes to copy the code, customise it and integrate within a Laravel + Vue application.
+                  p.my-4 If you care for your time, I hands down would go with this.&quot;
+                figcaption.flex.justify-center.items-center.space-x-3
+                  img.w-9.h-9.rounded-full(src='https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png', alt='profile picture')
+                  .font-medium.text-left(class='space-y-0.5 dark:text-white')
+                    div Bonnie Green
+                    .text-sm.font-light.text-gray-500(class='dark:text-gray-400') Developer at Open AI
+              figure.flex.flex-col.justify-center.items-center.p-8.text-center.bg-gray-50.border-b.border-gray-200(class='md:p-12 dark:bg-gray-800 dark:border-gray-700')
+                blockquote.mx-auto.mb-8.max-w-2xl.text-gray-500(class='dark:text-gray-400')
+                  h3.text-lg.font-semibold.text-gray-900(class='dark:text-white') Solid foundation for any project
+                  p.my-4
+                    | &quot;FlowBite provides a robust set of design tokens and components based on the popular Tailwind CSS framework. From the most used UI components like forms and navigation bars to the whole app screens designed both for desktop and mobile, this UI kit provides a solid foundation for any project.
+                  p.my-4
+                    | Designing with Figma components that can be easily translated to the utility classes of Tailwind CSS is a huge timesaver!&quot;
+                figcaption.flex.justify-center.items-center.space-x-3
+                  img.w-9.h-9.rounded-full(src='https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png', alt='profile picture')
+                  .font-medium.text-left(class='space-y-0.5 dark:text-white')
+                    div Roberta Casas
+                    .text-sm.font-light.text-gray-500(class='dark:text-gray-400') Lead designer at Dropbox
+              figure.flex.flex-col.justify-center.items-center.p-8.text-center.bg-gray-50.border-b.border-gray-200(class='lg:border-b-0 md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700')
+                blockquote.mx-auto.mb-8.max-w-2xl.text-gray-500(class='dark:text-gray-400')
+                  h3.text-lg.font-semibold.text-gray-900(class='dark:text-white') Mindblowing workflow and variants
+                  p.my-4
+                    | &quot;As someone who mainly designs in the browser, I&apos;ve been a casual user of Figma, but as soon as I saw and started playing with FlowBite my mind was &#x1F92F;.
+                  p.my-4
+                    | Everything is so well structured and simple to use (I&apos;ve learnt so much about Figma by just using the toolkit).
+                  p.my-4
+                    | Aesthetically, the well designed components are beautiful and will undoubtedly level up your next application.&quot;
+                figcaption.flex.justify-center.items-center.space-x-3
+                  img.w-9.h-9.rounded-full(src='https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png', alt='profile picture')
+                  .font-medium.text-left(class='space-y-0.5 dark:text-white')
+                    div Jese Leos
+                    .text-sm.font-light.text-gray-500(class='dark:text-gray-400') Software Engineer at Facebook
+              figure.flex.flex-col.justify-center.items-center.p-8.text-center.bg-gray-50.border-gray-200(class='md:p-12 dark:bg-gray-800 dark:border-gray-700')
+                blockquote.mx-auto.mb-8.max-w-2xl.text-gray-500(class='dark:text-gray-400')
+                  h3.text-lg.font-semibold.text-gray-900(class='dark:text-white') Efficient Collaborating
+                  p.my-4
+                    | &quot;This is a very complex and beautiful set of elements. Under the hood it comes with the best things from 2 different worlds: Figma and Tailwind.
+                  p.my-4
+                    | You have many examples that can be used to create a fast prototype for your team.&quot;
+                figcaption.flex.justify-center.items-center.space-x-3
+                  img.w-9.h-9.rounded-full(src='https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png', alt='profile picture')
+                  .font-medium.text-left(class='space-y-0.5 dark:text-white')
+                    div Joseph McFall
+                    .text-sm.font-light.text-gray-500(class='dark:text-gray-400') CTO at Google
+            .text-center
+              a.px-5.mr-2.mb-2.text-sm.font-medium.text-gray-900.bg-white.rounded-lg.border.border-gray-200(href='/register', class='py-2.5 focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700') Show more...
+      section#contact
+        // ====== Contact Section Start
+        .relative.z-10.overflow-hidden.bg-white.py-20(class='lg:py-[120px]')
+          .container.mx-auto
+            .-mx-4.flex.flex-wrap(class='lg:justify-between')
+              .w-full.px-4(class='lg:w-1/2 xl:w-6/12')
+                .mb-12(class='max-w-[570px] lg:mb-0')
+                  span.text-primary.mb-4.block.text-base.font-semibold
+                    | Contact Us
+                  h2.text-dark.mb-6.font-bold.uppercase(class='text-[32px] sm:text-[40px] lg:text-[36px] xl:text-[40px]')
+                    | GET IN TOUCH WITH US
+                  p.text-body-color.mb-9.text-base.leading-relaxed
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius
+                    | tempor incididunt ut labore et dolore magna aliqua. Ut enim adiqua
+                    | minim veniam quis nostrud exercitation ullamco
+                  .mb-8.flex.w-full(class='max-w-[370px]')
+                    .bg-primary.text-primary.mr-6.flex.w-full.items-center.justify-center.overflow-hidden.rounded.bg-opacity-5(class='h-[60px] max-w-[60px] sm:h-[70px] sm:max-w-[70px]')
+                      svg.fill-current(width='24', height='24', viewBox='0 0 24 24')
+                        path(d='M21.8182 24H16.5584C15.3896 24 14.4156 23.0256 14.4156 21.8563V17.5688C14.4156 17.1401 14.0649 16.7893 13.6364 16.7893H10.4026C9.97403 16.7893 9.62338 17.1401 9.62338 17.5688V21.8173C9.62338 22.9866 8.64935 23.961 7.48052 23.961H2.14286C0.974026 23.961 0 22.9866 0 21.8173V8.21437C0 7.62972 0.311688 7.08404 0.818182 6.77223L11.1039 0.263094C11.6494 -0.0876979 12.3896 -0.0876979 12.9351 0.263094L23.2208 6.77223C23.7273 7.08404 24 7.62972 24 8.21437V21.7783C24 23.0256 23.026 24 21.8182 24ZM10.3636 15.4251H13.5974C14.7662 15.4251 15.7403 16.3995 15.7403 17.5688V21.8173C15.7403 22.246 16.0909 22.5968 16.5195 22.5968H21.8182C22.2468 22.5968 22.5974 22.246 22.5974 21.8173V8.25335C22.5974 8.13642 22.5195 8.01949 22.4416 7.94153L12.1948 1.4324C12.0779 1.35445 11.9221 1.35445 11.8442 1.4324L1.55844 7.94153C1.44156 8.01949 1.4026 8.13642 1.4026 8.25335V21.8563C1.4026 22.285 1.75325 22.6358 2.18182 22.6358H7.48052C7.90909 22.6358 8.25974 22.285 8.25974 21.8563V17.5688C8.22078 16.3995 9.19481 15.4251 10.3636 15.4251Z')
+                    .w-full
+                      h4.text-dark.mb-1.text-xl.font-bold Our Location
+                      p.text-body-color.text-base
+                        | New York, USA
+                  .mb-8.flex.w-full(class='max-w-[370px]')
+                    .bg-primary.text-primary.mr-6.flex.w-full.items-center.justify-center.overflow-hidden.rounded.bg-opacity-5(class='h-[60px] max-w-[60px] sm:h-[70px] sm:max-w-[70px]')
+                      svg.fill-current(width='24', height='26', viewBox='0 0 24 26')
+                        path(d='M22.6149 15.1386C22.5307 14.1704 21.7308 13.4968 20.7626 13.4968H2.82869C1.86042 13.4968 1.10265 14.2125 0.97636 15.1386L0.092295 23.9793C0.0501967 24.4845 0.21859 25.0317 0.555377 25.4106C0.892163 25.7895 1.39734 26 1.94462 26H21.6887C22.1939 26 22.6991 25.7895 23.078 25.4106C23.4148 25.0317 23.5832 24.5266 23.5411 23.9793L22.6149 15.1386ZM21.9413 24.4424C21.8992 24.4845 21.815 24.5687 21.6466 24.5687H1.94462C1.81833 24.5687 1.69203 24.4845 1.64993 24.4424C1.60783 24.4003 1.52364 24.3161 1.56574 24.1477L2.4498 15.2649C2.4498 15.0544 2.61819 14.9281 2.82869 14.9281H20.8047C21.0152 14.9281 21.1415 15.0544 21.1835 15.2649L22.0676 24.1477C22.0255 24.274 21.9834 24.4003 21.9413 24.4424Z')
+                        path(d='M11.7965 16.7805C10.1547 16.7805 8.84961 18.0855 8.84961 19.7273C8.84961 21.3692 10.1547 22.6742 11.7965 22.6742C13.4383 22.6742 14.7434 21.3692 14.7434 19.7273C14.7434 18.0855 13.4383 16.7805 11.7965 16.7805ZM11.7965 21.2008C10.9966 21.2008 10.3231 20.5272 10.3231 19.7273C10.3231 18.9275 10.9966 18.2539 11.7965 18.2539C12.5964 18.2539 13.2699 18.9275 13.2699 19.7273C13.2699 20.5272 12.5964 21.2008 11.7965 21.2008Z')
+                        path(d='M1.10265 7.85562C1.18684 9.70794 2.82868 10.4657 3.67064 10.4657H6.61752C6.65962 10.4657 6.65962 10.4657 6.65962 10.4657C7.92257 10.3815 9.18552 9.53955 9.18552 7.85562V6.84526C10.5748 6.84526 13.7742 6.84526 15.1635 6.84526V7.85562C15.1635 9.53955 16.4264 10.3815 17.6894 10.4657H17.7315H20.6363C21.4782 10.4657 23.1201 9.70794 23.2043 7.85562C23.2043 7.72932 23.2043 7.26624 23.2043 6.84526C23.2043 6.50847 23.2043 6.21378 23.2043 6.17169C23.2043 6.12959 23.2043 6.08749 23.2043 6.08749C23.078 4.90874 22.657 3.94047 21.9413 3.18271L21.8992 3.14061C20.8468 2.17235 19.5838 1.62507 18.6155 1.28828C15.795 0.193726 12.2587 0.193726 12.0903 0.193726C9.6065 0.235824 8.00677 0.446315 5.60716 1.28828C4.681 1.58297 3.41805 2.13025 2.36559 3.09851L2.3235 3.14061C1.60782 3.89838 1.18684 4.86664 1.06055 6.04539C1.06055 6.08749 1.06055 6.12959 1.06055 6.12959C1.06055 6.21378 1.06055 6.46637 1.06055 6.80316C1.10265 7.18204 1.10265 7.68722 1.10265 7.85562ZM3.37595 4.15097C4.21792 3.3932 5.27038 2.93012 6.15444 2.59333C8.34355 1.79346 9.7749 1.62507 12.1745 1.58297C12.3429 1.58297 15.6266 1.62507 18.1525 2.59333C19.0365 2.93012 20.089 3.3511 20.931 4.15097C21.394 4.65615 21.6887 5.32972 21.7729 6.12959C21.7729 6.25588 21.7729 6.46637 21.7729 6.80316C21.7729 7.22414 21.7729 7.68722 21.7729 7.81352C21.7308 8.78178 20.8047 8.99227 20.6784 8.99227H17.7736C17.3526 8.95017 16.679 8.78178 16.679 7.85562V6.12959C16.679 5.7928 16.4685 5.54021 16.1738 5.41392C15.9213 5.32972 8.55405 5.32972 8.30146 5.41392C8.00677 5.49811 7.79628 5.7928 7.79628 6.12959V7.85562C7.79628 8.78178 7.1227 8.95017 6.70172 8.99227H3.79694C3.67064 8.99227 2.74448 8.78178 2.70238 7.81352C2.70238 7.68722 2.70238 7.22414 2.70238 6.80316C2.70238 6.46637 2.70238 6.29798 2.70238 6.17169C2.61818 5.32972 2.91287 4.65615 3.37595 4.15097Z')
+                    .w-full
+                      h4.text-dark.mb-1.text-xl.font-bold Phone Number
+                      p.text-body-color.text-base +1 142579980
+                  .mb-8.flex.w-full(class='max-w-[370px]')
+                    .bg-primary.text-primary.mr-6.flex.w-full.items-center.justify-center.overflow-hidden.rounded.bg-opacity-5(class='h-[60px] max-w-[60px] sm:h-[70px] sm:max-w-[70px]')
+                      svg.fill-current(width='28', height='19', viewBox='0 0 28 19')
+                        path(d='M25.3636 0H2.63636C1.18182 0 0 1.16785 0 2.6052V16.3948C0 17.8322 1.18182 19 2.63636 19H25.3636C26.8182 19 28 17.8322 28 16.3948V2.6052C28 1.16785 26.8182 0 25.3636 0ZM25.3636 1.5721C25.5909 1.5721 25.7727 1.61702 25.9545 1.75177L14.6364 8.53428C14.2273 8.75886 13.7727 8.75886 13.3636 8.53428L2.04545 1.75177C2.22727 1.66194 2.40909 1.5721 2.63636 1.5721H25.3636ZM25.3636 17.383H2.63636C2.09091 17.383 1.59091 16.9338 1.59091 16.3499V3.32388L12.5 9.8818C12.9545 10.1513 13.4545 10.2861 13.9545 10.2861C14.4545 10.2861 14.9545 10.1513 15.4091 9.8818L26.3182 3.32388V16.3499C26.4091 16.9338 25.9091 17.383 25.3636 17.383Z')
+                    .w-full
+                      h4.text-dark.mb-1.text-xl.font-bold Email Address
+                      p.text-body-color.text-base info@yourdomain.com
+              .w-full.px-4(class='lg:w-1/2 xl:w-5/12')
+                .relative.rounded-lg.bg-white.p-8.shadow-lg.mt-5(class='sm:p-12')
+                  .mt-5.pt-5
+                    a.text-white.bg-blue-700.block.px-4.py-2(href='/contact', class='hover:bg-blue-800 hover:bg-blue-800 dark:hover:bg-gray-600 dark:hover:text-white') Go To Contact
+                  div
+                    span.absolute.-top-10.-right-9(class='z-[-1]')
+                      svg(width='100', height='100', viewBox='0 0 100 100', fill='none', xmlns='http://www.w3.org/2000/svg')
+                        path(fill-rule='evenodd', clip-rule='evenodd', d='M0 100C0 44.7715 0 0 0 0C55.2285 0 100 44.7715 100 100C100 100 100 100 0 100Z', fill='#3056D3')
+                    span.absolute.-right-10(class='top-[90px] z-[-1]')
+                      svg(width='34', height='134', viewBox='0 0 34 134', fill='none', xmlns='http://www.w3.org/2000/svg')
+                        circle(cx='31.9993', cy='132', r='1.66667', transform='rotate(180 31.9993 132)', fill='#13C296')
+                        circle(cx='31.9993', cy='117.333', r='1.66667', transform='rotate(180 31.9993 117.333)', fill='#13C296')
+                        circle(cx='31.9993', cy='102.667', r='1.66667', transform='rotate(180 31.9993 102.667)', fill='#13C296')
+                        circle(cx='31.9993', cy='88', r='1.66667', transform='rotate(180 31.9993 88)', fill='#13C296')
+                        circle(cx='31.9993', cy='73.3333', r='1.66667', transform='rotate(180 31.9993 73.3333)', fill='#13C296')
+                        circle(cx='31.9993', cy='45', r='1.66667', transform='rotate(180 31.9993 45)', fill='#13C296')
+                        circle(cx='31.9993', cy='16', r='1.66667', transform='rotate(180 31.9993 16)', fill='#13C296')
+                        circle(cx='31.9993', cy='59', r='1.66667', transform='rotate(180 31.9993 59)', fill='#13C296')
+                        circle(cx='31.9993', cy='30.6666', r='1.66667', transform='rotate(180 31.9993 30.6666)', fill='#13C296')
+                        circle(cx='31.9993', cy='1.66665', r='1.66667', transform='rotate(180 31.9993 1.66665)', fill='#13C296')
+                        circle(cx='17.3333', cy='132', r='1.66667', transform='rotate(180 17.3333 132)', fill='#13C296')
+                        circle(cx='17.3333', cy='117.333', r='1.66667', transform='rotate(180 17.3333 117.333)', fill='#13C296')
+                        circle(cx='17.3333', cy='102.667', r='1.66667', transform='rotate(180 17.3333 102.667)', fill='#13C296')
+                        circle(cx='17.3333', cy='88', r='1.66667', transform='rotate(180 17.3333 88)', fill='#13C296')
+                        circle(cx='17.3333', cy='73.3333', r='1.66667', transform='rotate(180 17.3333 73.3333)', fill='#13C296')
+                        circle(cx='17.3333', cy='45', r='1.66667', transform='rotate(180 17.3333 45)', fill='#13C296')
+                        circle(cx='17.3333', cy='16', r='1.66667', transform='rotate(180 17.3333 16)', fill='#13C296')
+                        circle(cx='17.3333', cy='59', r='1.66667', transform='rotate(180 17.3333 59)', fill='#13C296')
+                        circle(cx='17.3333', cy='30.6666', r='1.66667', transform='rotate(180 17.3333 30.6666)', fill='#13C296')
+                        circle(cx='17.3333', cy='1.66665', r='1.66667', transform='rotate(180 17.3333 1.66665)', fill='#13C296')
+                        circle(cx='2.66536', cy='132', r='1.66667', transform='rotate(180 2.66536 132)', fill='#13C296')
+                        circle(cx='2.66536', cy='117.333', r='1.66667', transform='rotate(180 2.66536 117.333)', fill='#13C296')
+                        circle(cx='2.66536', cy='102.667', r='1.66667', transform='rotate(180 2.66536 102.667)', fill='#13C296')
+                        circle(cx='2.66536', cy='88', r='1.66667', transform='rotate(180 2.66536 88)', fill='#13C296')
+                        circle(cx='2.66536', cy='73.3333', r='1.66667', transform='rotate(180 2.66536 73.3333)', fill='#13C296')
+                        circle(cx='2.66536', cy='45', r='1.66667', transform='rotate(180 2.66536 45)', fill='#13C296')
+                        circle(cx='2.66536', cy='16', r='1.66667', transform='rotate(180 2.66536 16)', fill='#13C296')
+                        circle(cx='2.66536', cy='59', r='1.66667', transform='rotate(180 2.66536 59)', fill='#13C296')
+                        circle(cx='2.66536', cy='30.6666', r='1.66667', transform='rotate(180 2.66536 30.6666)', fill='#13C296')
+                        circle(cx='2.66536', cy='1.66665', r='1.66667', transform='rotate(180 2.66536 1.66665)', fill='#13C296')
+                    span.absolute.-left-7.-bottom-7(class='z-[-1]')
+                      svg(width='107', height='134', viewBox='0 0 107 134', fill='none', xmlns='http://www.w3.org/2000/svg')
+                        circle(cx='104.999', cy='132', r='1.66667', transform='rotate(180 104.999 132)', fill='#13C296')
+                        circle(cx='104.999', cy='117.333', r='1.66667', transform='rotate(180 104.999 117.333)', fill='#13C296')
+                        circle(cx='104.999', cy='102.667', r='1.66667', transform='rotate(180 104.999 102.667)', fill='#13C296')
+                        circle(cx='104.999', cy='88', r='1.66667', transform='rotate(180 104.999 88)', fill='#13C296')
+                        circle(cx='104.999', cy='73.3333', r='1.66667', transform='rotate(180 104.999 73.3333)', fill='#13C296')
+                        circle(cx='104.999', cy='45', r='1.66667', transform='rotate(180 104.999 45)', fill='#13C296')
+                        circle(cx='104.999', cy='16', r='1.66667', transform='rotate(180 104.999 16)', fill='#13C296')
+                        circle(cx='104.999', cy='59', r='1.66667', transform='rotate(180 104.999 59)', fill='#13C296')
+                        circle(cx='104.999', cy='30.6666', r='1.66667', transform='rotate(180 104.999 30.6666)', fill='#13C296')
+                        circle(cx='104.999', cy='1.66665', r='1.66667', transform='rotate(180 104.999 1.66665)', fill='#13C296')
+                        circle(cx='90.3333', cy='132', r='1.66667', transform='rotate(180 90.3333 132)', fill='#13C296')
+                        circle(cx='90.3333', cy='117.333', r='1.66667', transform='rotate(180 90.3333 117.333)', fill='#13C296')
+                        circle(cx='90.3333', cy='102.667', r='1.66667', transform='rotate(180 90.3333 102.667)', fill='#13C296')
+                        circle(cx='90.3333', cy='88', r='1.66667', transform='rotate(180 90.3333 88)', fill='#13C296')
+                        circle(cx='90.3333', cy='73.3333', r='1.66667', transform='rotate(180 90.3333 73.3333)', fill='#13C296')
+                        circle(cx='90.3333', cy='45', r='1.66667', transform='rotate(180 90.3333 45)', fill='#13C296')
+                        circle(cx='90.3333', cy='16', r='1.66667', transform='rotate(180 90.3333 16)', fill='#13C296')
+                        circle(cx='90.3333', cy='59', r='1.66667', transform='rotate(180 90.3333 59)', fill='#13C296')
+                        circle(cx='90.3333', cy='30.6666', r='1.66667', transform='rotate(180 90.3333 30.6666)', fill='#13C296')
+                        circle(cx='90.3333', cy='1.66665', r='1.66667', transform='rotate(180 90.3333 1.66665)', fill='#13C296')
+                        circle(cx='75.6654', cy='132', r='1.66667', transform='rotate(180 75.6654 132)', fill='#13C296')
+                        circle(cx='31.9993', cy='132', r='1.66667', transform='rotate(180 31.9993 132)', fill='#13C296')
+                        circle(cx='75.6654', cy='117.333', r='1.66667', transform='rotate(180 75.6654 117.333)', fill='#13C296')
+                        circle(cx='31.9993', cy='117.333', r='1.66667', transform='rotate(180 31.9993 117.333)', fill='#13C296')
+                        circle(cx='75.6654', cy='102.667', r='1.66667', transform='rotate(180 75.6654 102.667)', fill='#13C296')
+                        circle(cx='31.9993', cy='102.667', r='1.66667', transform='rotate(180 31.9993 102.667)', fill='#13C296')
+                        circle(cx='75.6654', cy='88', r='1.66667', transform='rotate(180 75.6654 88)', fill='#13C296')
+                        circle(cx='31.9993', cy='88', r='1.66667', transform='rotate(180 31.9993 88)', fill='#13C296')
+                        circle(cx='75.6654', cy='73.3333', r='1.66667', transform='rotate(180 75.6654 73.3333)', fill='#13C296')
+                        circle(cx='31.9993', cy='73.3333', r='1.66667', transform='rotate(180 31.9993 73.3333)', fill='#13C296')
+                        circle(cx='75.6654', cy='45', r='1.66667', transform='rotate(180 75.6654 45)', fill='#13C296')
+                        circle(cx='31.9993', cy='45', r='1.66667', transform='rotate(180 31.9993 45)', fill='#13C296')
+                        circle(cx='75.6654', cy='16', r='1.66667', transform='rotate(180 75.6654 16)', fill='#13C296')
+                        circle(cx='31.9993', cy='16', r='1.66667', transform='rotate(180 31.9993 16)', fill='#13C296')
+                        circle(cx='75.6654', cy='59', r='1.66667', transform='rotate(180 75.6654 59)', fill='#13C296')
+                        circle(cx='31.9993', cy='59', r='1.66667', transform='rotate(180 31.9993 59)', fill='#13C296')
+                        circle(cx='75.6654', cy='30.6666', r='1.66667', transform='rotate(180 75.6654 30.6666)', fill='#13C296')
+                        circle(cx='31.9993', cy='30.6666', r='1.66667', transform='rotate(180 31.9993 30.6666)', fill='#13C296')
+                        circle(cx='75.6654', cy='1.66665', r='1.66667', transform='rotate(180 75.6654 1.66665)', fill='#13C296')
+                        circle(cx='31.9993', cy='1.66665', r='1.66667', transform='rotate(180 31.9993 1.66665)', fill='#13C296')
+                        circle(cx='60.9993', cy='132', r='1.66667', transform='rotate(180 60.9993 132)', fill='#13C296')
+                        circle(cx='17.3333', cy='132', r='1.66667', transform='rotate(180 17.3333 132)', fill='#13C296')
+                        circle(cx='60.9993', cy='117.333', r='1.66667', transform='rotate(180 60.9993 117.333)', fill='#13C296')
+                        circle(cx='17.3333', cy='117.333', r='1.66667', transform='rotate(180 17.3333 117.333)', fill='#13C296')
+                        circle(cx='60.9993', cy='102.667', r='1.66667', transform='rotate(180 60.9993 102.667)', fill='#13C296')
+                        circle(cx='17.3333', cy='102.667', r='1.66667', transform='rotate(180 17.3333 102.667)', fill='#13C296')
+                        circle(cx='60.9993', cy='88', r='1.66667', transform='rotate(180 60.9993 88)', fill='#13C296')
+                        circle(cx='17.3333', cy='88', r='1.66667', transform='rotate(180 17.3333 88)', fill='#13C296')
+                        circle(cx='60.9993', cy='73.3333', r='1.66667', transform='rotate(180 60.9993 73.3333)', fill='#13C296')
+                        circle(cx='17.3333', cy='73.3333', r='1.66667', transform='rotate(180 17.3333 73.3333)', fill='#13C296')
+                        circle(cx='60.9993', cy='45', r='1.66667', transform='rotate(180 60.9993 45)', fill='#13C296')
+                        circle(cx='17.3333', cy='45', r='1.66667', transform='rotate(180 17.3333 45)', fill='#13C296')
+                        circle(cx='60.9993', cy='16', r='1.66667', transform='rotate(180 60.9993 16)', fill='#13C296')
+                        circle(cx='17.3333', cy='16', r='1.66667', transform='rotate(180 17.3333 16)', fill='#13C296')
+                        circle(cx='60.9993', cy='59', r='1.66667', transform='rotate(180 60.9993 59)', fill='#13C296')
+                        circle(cx='17.3333', cy='59', r='1.66667', transform='rotate(180 17.3333 59)', fill='#13C296')
+                        circle(cx='60.9993', cy='30.6666', r='1.66667', transform='rotate(180 60.9993 30.6666)', fill='#13C296')
+                        circle(cx='17.3333', cy='30.6666', r='1.66667', transform='rotate(180 17.3333 30.6666)', fill='#13C296')
+                        circle(cx='60.9993', cy='1.66665', r='1.66667', transform='rotate(180 60.9993 1.66665)', fill='#13C296')
+                        circle(cx='17.3333', cy='1.66665', r='1.66667', transform='rotate(180 17.3333 1.66665)', fill='#13C296')
+                        circle(cx='46.3333', cy='132', r='1.66667', transform='rotate(180 46.3333 132)', fill='#13C296')
+                        circle(cx='2.66536', cy='132', r='1.66667', transform='rotate(180 2.66536 132)', fill='#13C296')
+                        circle(cx='46.3333', cy='117.333', r='1.66667', transform='rotate(180 46.3333 117.333)', fill='#13C296')
+                        circle(cx='2.66536', cy='117.333', r='1.66667', transform='rotate(180 2.66536 117.333)', fill='#13C296')
+                        circle(cx='46.3333', cy='102.667', r='1.66667', transform='rotate(180 46.3333 102.667)', fill='#13C296')
+                        circle(cx='2.66536', cy='102.667', r='1.66667', transform='rotate(180 2.66536 102.667)', fill='#13C296')
+                        circle(cx='46.3333', cy='88', r='1.66667', transform='rotate(180 46.3333 88)', fill='#13C296')
+                        circle(cx='2.66536', cy='88', r='1.66667', transform='rotate(180 2.66536 88)', fill='#13C296')
+                        circle(cx='46.3333', cy='73.3333', r='1.66667', transform='rotate(180 46.3333 73.3333)', fill='#13C296')
+                        circle(cx='2.66536', cy='73.3333', r='1.66667', transform='rotate(180 2.66536 73.3333)', fill='#13C296')
+                        circle(cx='46.3333', cy='45', r='1.66667', transform='rotate(180 46.3333 45)', fill='#13C296')
+                        circle(cx='2.66536', cy='45', r='1.66667', transform='rotate(180 2.66536 45)', fill='#13C296')
+                        circle(cx='46.3333', cy='16', r='1.66667', transform='rotate(180 46.3333 16)', fill='#13C296')
+                        circle(cx='2.66536', cy='16', r='1.66667', transform='rotate(180 2.66536 16)', fill='#13C296')
+                        circle(cx='46.3333', cy='59', r='1.66667', transform='rotate(180 46.3333 59)', fill='#13C296')
+                        circle(cx='2.66536', cy='59', r='1.66667', transform='rotate(180 2.66536 59)', fill='#13C296')
+                        circle(cx='46.3333', cy='30.6666', r='1.66667', transform='rotate(180 46.3333 30.6666)', fill='#13C296')
+                        circle(cx='2.66536', cy='30.6666', r='1.66667', transform='rotate(180 2.66536 30.6666)', fill='#13C296')
+                        circle(cx='46.3333', cy='1.66665', r='1.66667', transform='rotate(180 46.3333 1.66665)', fill='#13C296')
+                        circle(cx='2.66536', cy='1.66665', r='1.66667', transform='rotate(180 2.66536 1.66665)', fill='#13C296')
+        // ====== Contact Section End
+    footer.bg-white(class='dark:bg-gray-900')
+      .px-4.py-6.bg-gray-100(class='dark:bg-gray-700 md:flex md:items-center md:justify-between')
+        span.text-sm.text-gray-500(class='dark:text-gray-300 sm:text-center')
+          | &copy; 2023 
+          a(href='/')
+            span.text-purple-500(style="font-family: 'Shantell Sans', cursive;") Paxon Tools
+          | . All Rights Reserved.
+        .flex.mt-4.space-x-6(class='sm:justify-center md:mt-0')
+          a.text-gray-400.text-2xl(href='/', class='hover:text-gray-900 dark:hover:text-white', target='_blank')
+            i.bi.bi-globe-americas.text-2xl
+          a.text-gray-400.text-2xl(href='https://linkedin.com/in/ramziben', class='hover:text-gray-900 dark:hover:text-white', target='_blank')
+            i.bi.bi-linkedin.text-2xl
+          a.text-gray-400.text-2xl(href='https://github.com/peterondy/', class='hover:text-gray-900 dark:hover:text-white', target='_blank')
+            i.bi.bi-github.text-2xl
+          a.text-gray-400.text-2xl(href='#', class='hover:text-gray-900 dark:hover:text-white', target='_blank')
+            i.bi.bi-whatsapp.text-2xl
+          a.text-gray-400.text-2xl(href='#', class='hover:text-gray-900 dark:hover:text-white', target='_blank')
+            i.bi.bi-telegram.text-2xl
+          a.text-gray-400.text-2xl(href='#', class='hover:text-gray-900 dark:hover:text-white', target='_blank')
+            i.bi.bi-telephone.text-2xl
