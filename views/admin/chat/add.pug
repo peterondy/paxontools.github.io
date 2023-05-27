@@ -1,7 +1,4 @@
 include head.html
-style 
-    include style.css
-
 body
     .min-h-full
       nav.bg-gray-800
@@ -14,7 +11,7 @@ body
                 .ml-10.flex.items-baseline.space-x-4
                   // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
                   a.bg-gray-900.text-white.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/dashboard', aria-current='page') Dashboard
-                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/languages', class='hover:bg-gray-700 hover:text-white') Langueges
+                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/blog', class='hover:bg-gray-700 hover:text-white') Blog
                   a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/elements', class='hover:bg-gray-700 hover:text-white') Elements
                   a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/users', class='hover:bg-gray-700 hover:text-white') Users
                   a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/home', class='hover:bg-gray-700 hover:text-white') Reports
@@ -73,33 +70,35 @@ body
       header.bg-white.shadow
         .mx-auto.max-w-7xl.px-4.py-6(class='sm:px-6 lg:px-8')
           h1.text-3xl.font-bold.tracking-tight.text-gray-900 Users
-      main.overflow-hidden.mx-auto.max-w-7xl.py-6(class='sm:px-6 lg:px-8')
-        div.h-80.bg-gray-400.rounded-xl.text-center.justify-center.justify-items-center.float-left(class='w-full py-1 px-6', style="scroll-behavior: smooth; overflow-y: scroll; overflow-x: hidden;")
-          table.table-auto
-            thead
-              tr
-                th(scope="col" class="px-6 py-3") Users
-                th(scope="col" class="px-6 py-3") Email
-                th(scope="col" class="px-6 py-3") Time
-                th(scope="col" class="px-6 py-3") Buttons
-            tbody
-              each user, index in users
-                tr(class="w-full bg-gray-300 border-b border-solid border-1 border-gray-100 dark:bg-gray-800 dark:border-gray-700")
-                  th(scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white") 
-                    a(href="/admin/users/" + user.username)
-                      h6= user.fullname
-                  td(class="px-6 py-4")
-                    h6= user.email
-                  td(class="px-6 py-4")
-                    h6= user.time
-                  td(class="px-6 py-4")
-                    if user.activetedstatus==true
-                      a(href="/admin/users/" + user.username +"/desactivate", class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 ml-5") desactivate
-                    else if user.activetedstatus==false
-                      a(href="/admin/users/" + user.username +"/activate", class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ml-5") Activate
-                    a(href="/admin/users/" + user.username +"/edit", class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800") Edit
-                    a(href="/admin/users/" + user.username +"/delete", class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900") Delete
-
-        div.w-full.h-15.bg-gray-200.inline-block.py-5.px-2.rounded.mt-2.text-center
-          a(href="/admin/users/" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800") Display All Users
-          a(href="/admin/users/add" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700")  Add New User
+      main.overflow-hidden
+        .mx-auto.max-w-7xl.py-6(class='sm:px-6 lg:px-8')
+            form(action='/admin/chats/add', method='POST')
+              .mb-6(class='w-6/12 ml-28')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='email', class='dark:text-white') Your Question
+                  input#email.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='email', name='text', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='Your Question', required='')
+              .mb-6(class='w-6/12 ml-28')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='username', class='dark:text-white') User username
+                  input#username.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='username', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='johndoe', required='')
+              .mb-6(class='w-6/12 ml-28')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='fullname', class='dark:text-white') User full name
+                  input#fullname.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='fullname', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='John Doe', required='')
+              .mb-6(class='w-6/12 ml-28')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='useraccess', class='dark:text-white') Select an option
+                  select#useraccess.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required='', name='useraccess')
+                    option(value='', selected='') Choose the access
+                    option(value='useronly') Only user
+                    option(value='usercontact') Admin with access of contact
+                    option(value='userpartadmin') Admin with access of part admin
+                    option(value='useradminfullaccess') Admin Full Access
+              .mb-6(class='w-6/12 ml-28')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='password', class='dark:text-white') User password
+                  input#password.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='password', name='password' class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='●●●●●●●●', required='')
+              
+              .flex.items-start.mb-6(class='w-6/12 ml-28')
+                  if msg
+                      label.ml-2.text-sm.font-medium.text-gray-900(for='remember', class='dark:text-gray-300')
+                          h6=msg
+                  else
+                    h6#msg.text-red-900.bg-red-200.rounded.px-6.py-4
+              
+              button#submit.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.w-full.px-5.text-center(type='submit', class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Add New User

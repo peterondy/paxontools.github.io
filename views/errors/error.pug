@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        link(href='https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap', rel='stylesheet')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css', rel='stylesheet')
+        link(rel='stylesheet', href='https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css')
+
+        title= code 
+            |     Page
+    body 
+        .grid.items-center.justify-center.min-h-screen.bg-white.py-35.pt-15
+          .flex.flex-col.items-center
+            .text-indigo-500.font-bold.text-7xl
+                h1=code
+            .font-bold.text-3xl.mt-10(class='xl:text-7xl lg:text-6xl md:text-5xl')
+            | This page does not exist
+            .text-gray-400.font-medium.text-sm.mt-8(class='md:text-xl lg:text-2xl')
+            | The page you are looking for could not be found.
+          br
+          div
+            a.text-purple-900.bg-purple-200.px-10.py-2.float-left.mr-10.rounded-xl(href='/', class='hover:bg-purple-300') Home
+            a.text-blue-900.bg-blue-200.px-10.py-2.float-left.rounded-xl(href='/contact', class='hover:bg-blue-300') Contact

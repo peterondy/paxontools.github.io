@@ -1,6 +1,7 @@
 include head.html
 style 
     include style.css
+
 body
     .min-h-full
       nav.bg-gray-800
@@ -8,13 +9,13 @@ body
           .flex.h-16.items-center.justify-between
             .flex.items-center
               .flex-shrink-0
-                img.h-8.w-8(src=data.logo, alt='Paxon Tools')
+                img.h-8.w-25(src="/logo/logo-500-200.png", alt='Paxon Tools')
               .hidden(class='md:block')
                 .ml-10.flex.items-baseline.space-x-4
                   // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
                   a.bg-gray-900.text-white.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/dashboard', aria-current='page') Dashboard
-                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/languages', class='hover:bg-gray-700 hover:text-white') Langueges
-                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/elements', class='hover:bg-gray-700 hover:text-white') Elements
+                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/blog', class='hover:bg-gray-700 hover:text-white') Blog
+                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/chats', class='hover:bg-gray-700 hover:text-white') chats
                   a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/users', class='hover:bg-gray-700 hover:text-white') Users
                   a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/home', class='hover:bg-gray-700 hover:text-white') Reports
             .hidden(class='md:block')
@@ -28,7 +29,7 @@ body
                   div
                     button#user-menu-button.flex.max-w-xs.items-center.rounded-full.bg-gray-800.text-sm(type='button', class='focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800', aria-expanded='false', aria-haspopup='true')
                       span.sr-only Open user menu
-                      img.h-8.w-8.rounded-full(src=data.src, alt='')
+                      img.h-8.w-8.rounded-full(src="/logo/logo-500.png", alt='')
                   .absolute.right-0.z-10.mt-2.w-48.origin-top-right.rounded-md.bg-white.py-1.shadow-lg.ring-1.ring-black.ring-opacity-5(class='focus:outline-none', role='menu', aria-orientation='vertical', aria-labelledby='user-menu-button', tabindex='-1')
                     // Active: "bg-gray-100", Not Active: ""
                     a#user-menu-item-0.block.px-4.py-2.text-sm.text-gray-700(href='/admin/profile', role='menuitem', tabindex='-1') View Profile
@@ -56,7 +57,7 @@ body
           .border-t.border-gray-700.pb-3.pt-4
             .flex.items-center.px-5
               .flex-shrink-0
-                img.h-10.w-10.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', alt='')
+                img.h-10.w-10.rounded-full(src="/logo/logo-500.png", alt='')
               .ml-3
                 .text-base.font-medium.leading-none.text-white Tom Cook
                 .text-sm.font-medium.leading-none.text-gray-400 tom@example.com
@@ -74,24 +75,66 @@ body
           h1.text-3xl.font-bold.tracking-tight.text-gray-900 Users
       main.overflow-hidden
         .mx-auto.max-w-7xl.py-6(class='sm:px-6 lg:px-8')
-            form(class='w-6/12', action='/admin/elements/add', method='POST')
+            form(class='w-6/12', action='/admin/users/:username/edit', method='POST')
               .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='languagespanish', class='dark:text-white') Spanish Version
-                  input#languagespanish.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='languagespanish', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='Spanish Version', required='')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='email', class='dark:text-white') User email
+                  input#email.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(value=user.email,type='email', name='email', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='johndoe@john.com', required='')
               .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='languagenglish', class='dark:text-white') English Version
-                  input#languagenglish.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='languagenglish', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='English Version', required='')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='username', class='dark:text-white') User username
+                  input#username.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(value=user.username,type='text', name='username', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='johndoe', required='')
+                  input#username.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.hidden(value=user.username,type='text', name='oldusername')
               .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='languagearabic', class='dark:text-white') Arabic Version
-                  input#languagearabic.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='languagearabic', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='Arabic Version', required='')
+                  label.block.mb-2.text-sm.font-medium.text-gray-900.capitalize(for='fullname', class='dark:text-white') User full name
+                  input#fullname.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(value=user.fullname,type='text', name='fullname', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='John Doe', required='')
               .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='languagefrench', class='dark:text-white') French Version
-                  input#languagefrench.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='languagefrench' class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='French Version', required='')
-              
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='useraccess', class='dark:text-white') Select an option
+                  select#useraccess.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(,class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required='', name='useraccess')
+                    if user.useraccess == "useronly"
+                        option(value='useronly', selected='') Only user
+                        option(value='usercontact') Admin with access of contact
+                        option(value='userpartadmin') Admin with access of part admin
+                        option(value='useradminfullaccess') Admin Full Access
+                    else if user.useraccess == "usercontact"
+                        option(value='useronly') Only user
+                        option(value='usercontact', selected='') Admin with access of contact
+                        option(value='userpartadmin') Admin with access of part admin
+                        option(value='useradminfullaccess') Admin Full Access
+                    else if user.useraccess == "userpartadmin"
+                        option(value='useronly') Only user
+                        option(value='usercontact') Admin with access of contact
+                        option(value='userpartadmin', selected='') Admin with access of part admin
+                        option(value='useradminfullaccess') Admin Full Access
+                    else if user.useraccess == "useradminfullaccess"
+                        option(value='useronly') Only user
+                        option(value='usercontact') Admin with access of contact
+                        option(value='userpartadmin') Admin with access of part admin
+                        option(value='useradminfullaccess', selected='') Admin Full Access
+                    else 
+                        option(value='', selected='') Select An Option
+                        option(value='useronly') Only user
+                        option(value='usercontact') Admin with access of contact
+                        option(value='userpartadmin') Admin with access of part admin
+                        option(value='useradminfullaccess') Admin Full Access
+              .mb-6
+                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='useraccess', class='dark:text-white') Select an option
+                  select#activetedstatus.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(value=user.activetedstatus,class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required='', name='useraccess')
+                    option(value='', selected='') Choose the access
+                    if user.activetedstatus == true
+                        option(value='activate', selected='') Activate
+                        option(value='desactivate') Desactivate
+                    else if user.activetedstatus == false
+                        option(value='activate') Activate
+                        option(value='desactivate', selected='') Desactivate
+                    else 
+                        option(value='', selected='') Choose the access
+                        option(value='activate') Activate
+                        option(value='desactivate') Desactivate
+
               .flex.items-start.mb-6
                   if msg
                       label.ml-2.text-sm.font-medium.text-gray-900(for='remember', class='dark:text-gray-300')
                           h6=msg
+                  else
+                    h6#msg.text-red-900.bg-red-200.rounded.px-6.py-4
               
-              button#submit.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.w-full.px-5.text-center(type='submit', class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Add New Element
-include script.html
+              button#submit.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.w-full.px-5.text-center(type='submit', class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Update User Informations

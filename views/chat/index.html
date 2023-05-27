@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo/logo-50.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Chat Robot</title>
+</head>
+
+<body class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10" onload="getQuestionsData()">
+
+	<!-- Component Start -->
+	<div class="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+		<div class="flex flex-col flex-grow h-0 p-4 overflow-x-hidden" id="main">
+			<div class="flex w-full mt-2 space-x-3 max-w-xs">
+				<img src="/logo/robot-chat.png" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"/>
+				<div>
+					<div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+						<p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="bg-gray-300 p-4">
+			<input class="flex items-center h-10 w-full rounded px-3 text-sm" id="input-key" type="text" placeholder="Type your message…">
+		</div>
+	</div>
+
+  <script>
+
+    const inputKey = document.getElementById('input-key')
+
+    const baseUrl = "http://127.0.0.1:8000/get-chat"
+    async function getQuestionsData(){
+      const res = await fetch(baseUrl,{
+        method: "GET"
+      })
+      .then(data => data.json())
+      .then((data)=>{
+        data.forEach(element => {
+          const ele = `<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+                          <div>
+                            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+                              <p class="text-sm cursor-pointer bg-blue-700 rounded px-3 py-2 hover:bg-blue-800" onclick="sendQuestionsData('${element.question}')">${element.question}</p>
+                            </div>
+                          </div>
+                          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+                        </div>`
+          document.getElementById('main').innerHTML += ele
+          document.getElementById('main').scrollTo(0, document.getElementById('main').scrollHeight);
+        });
+      })
+      
+    }
+    inputKey.addEventListener("keydown", async(e)=>{
+      console.log(e.key)
+      if(e.key == "Enter"){
+        getQuestionsData()
+      }
+    })
+    async function sendQuestionsData(question){
+      const postUrl = `http://127.0.0.1:8000/getchat/${question}`
+      const res = await fetch(postUrl,{
+        method: "GET"
+      })
+      .then(data => data.json())
+      .then((data)=>{
+
+          const ele = `<div class="flex w-full mt-2 space-x-3 max-w-xs">
+                          <img src="/logo/robot-chat.png" class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"/>
+                          <div>
+                            <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+                              <p class="text-sm rounded">${data.response}</p>
+                            </div>
+                          </div>
+                        </div>`
+          document.getElementById('main').innerHTML += ele
+          document.getElementById('main').scrollTo(0, document.getElementById('main').scrollHeight);
+      })
+      getQuestionsData()
+    }
+
+    
+  </script>
+</body>
+</html>

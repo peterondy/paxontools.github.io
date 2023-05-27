@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+//const mongoose = require('mongoose')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://peter:WGmiCmoK8xWzXwqI@nodejs.5f7hshu.mongodb.net/?retryWrites=true&w=majority";
 
@@ -29,7 +29,6 @@ let connect = async function(database, collect, {dataname: datavalue})  {
       //console.log("Success")
     }
   }
-
 
 
 module.exports = connect

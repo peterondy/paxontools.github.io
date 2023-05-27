@@ -1,0 +1,17 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0&appId=3374791779447417&autoLogAppEvents=1" nonce="ZexX2YnW"></script>
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({ cache: true });
+        $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+            FB.init({
+            appId: '3374791779447417',
+            version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+            })
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        });
+    });
+</script>

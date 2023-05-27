@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo/logo-50.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Chat Questions</title>
+</head>
+<body>
+    <div class="min-h-full">
+        <nav class="bg-gray-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-8 w-25" src="/logo/logo-500-200.png" alt="Paxon Tools"/>
+                        </div><div class="hidden md:block">
+                            <div class="ml-10 flex items-baseline space-x-4"><!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"-->
+                                <a class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" href="/admin/dashboard" aria-current="page">Dashboard</a>
+                                <a class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white" href="/admin/blog">Blog</a>
+                                <a class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white" href="/admin/chats">Chats</a>
+                                <a class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white" href="/admin/users">Users</a>
+                                <a class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white" href="/admin/home">Reports</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-4 flex items-center md:ml-6">
+                            <button class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" type="button">
+                                <span class="sr-only">View notifications</span>
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path>
+                                </svg>
+                            </button><!-- Profile dropdown-->
+                            <div class="relative ml-3">
+                                <div>
+                                    <button class="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" type="button" aria-expanded="false" aria-haspopup="true">
+                                        <span class="sr-only">Open user menu</span>
+                                        <img class="h-8 w-8 rounded-full" src="/logo/logo-500.png" alt=""/>
+                                    </button>
+                                </div>
+                                <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"><!-- Active: "bg-gray-100", Not Active: ""-->
+                                    <a class="block px-4 py-2 text-sm text-gray-700" id="user-menu-item-0" href="/admin/profile" role="menuitem" tabindex="-1">View Profile</a>
+                                    <a class="block px-4 py-2 text-sm text-gray-700" id="user-menu-item-1" href="/admin/settings" role="menuitem" tabindex="-1">Settings</a>
+                                    <a class="block px-4 py-2 text-sm text-gray-700" id="user-menu-item-2" href="/admin/logout" role="menuitem" tabindex="-1">Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="-mr-2 flex md:hidden"><!-- Mobile menu button-->
+                        <button class="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" type="button" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span><!-- Menu open: "hidden", Menu closed: "block"--><svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg><!-- Menu open: "block", Menu closed: "hidden"--><svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div><!-- Mobile menu, show/hide based on menu state.-->
+            <div class="md:hidden" id="mobile-menu">
+                <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3"><!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"-->
+                    <a class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" href="#" aria-current="page">Dashboard</a>
+                    <a class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white" href="#">Team</a>
+                    <a class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white" href="#">Projects</a>
+                    <a class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white" href="#">Calendar</a>
+                    <a class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white" href="#">Reports</a>
+                </div>
+                <div class="border-t border-gray-700 pb-3 pt-4">
+                    <div class="flex items-center px-5">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="/logo/logo-500.png" alt=""/>
+                        </div>
+                        <div class="ml-3">
+                            <div class="text-base font-medium leading-none text-white">Tom Cook</div>
+                            <div class="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+                        </div>
+                        <button class="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" type="button">
+                            <span class="sr-only">View notifications</span><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path></svg>
+                        </button>
+                    </div>
+                    <div class="mt-3 space-y-1 px-2">
+                        <a class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white" href="#">Your Profile</a>
+                        <a class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white" href="#">Settings</a>
+                        <a class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white" href="#">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <header class="bg-white shadow">
+            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900">Chats</h1>
+            </div>
+        </header>
+        <main class="overflow-hidden">
+            <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                <form action="/admin/chats/add" method="POST">
+                    <div class="mb-6 w-6/12 ml-28">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="question">Your Question</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="question" type="text" name="question" placeholder="Your Question" required=""/>
+                    </div>
+                    <div class="mb-6 w-6/12 ml-28">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="response">Response</label>
+                        <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="response" type="text" name="response" placeholder="Your Response" cols="8" rows="12" required=""></textarea>
+                    </div>
+                    <button class="text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 text-center hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 float-right" id="submit" type="submit">Add New Qusetion</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

@@ -14,8 +14,8 @@ body
                 .ml-10.flex.items-baseline.space-x-4
                   // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
                   a.bg-gray-900.text-white.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/dashboard', aria-current='page') Dashboard
-                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/languages', class='hover:bg-gray-700 hover:text-white') Langueges
-                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/elements', class='hover:bg-gray-700 hover:text-white') Elements
+                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/blog', class='hover:bg-gray-700 hover:text-white') Blog
+                  a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/chats', class='hover:bg-gray-700 hover:text-white') Chats
                   a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/users', class='hover:bg-gray-700 hover:text-white') Users
                   a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/admin/home', class='hover:bg-gray-700 hover:text-white') Reports
             .hidden(class='md:block')
@@ -73,36 +73,40 @@ body
       header.bg-white.shadow
         .mx-auto.max-w-7xl.px-4.py-6(class='sm:px-6 lg:px-8')
           h1.text-3xl.font-bold.tracking-tight.text-gray-900 Users
-      main.overflow-hidden
-        .mx-auto.max-w-7xl.py-6(class='sm:px-6 lg:px-8')
-            form(class='w-6/12', action='/admin/users/add', method='POST')
-              .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='email', class='dark:text-white') User email
-                  input#email.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='email', name='email', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='johndoe@john.com', required='')
-              .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='username', class='dark:text-white') User username
-                  input#username.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='username', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='johndoe', required='')
-              .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='fullname', class='dark:text-white') User full name
-                  input#fullname.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='text', name='fullname', class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='John Doe', required='')
-              .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='useraccess', class='dark:text-white') Select an option
-                  select#useraccess.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required='', name='useraccess')
-                    option(value='', selected='') Choose the access
-                    option(value='useronly') Only user
-                    option(value='usercontact') Admin with access of contact
-                    option(value='userpartadmin') Admin with access of part admin
-                    option(value='useradminfullaccess') Admin Full Access
-              .mb-6
-                  label.block.mb-2.text-sm.font-medium.text-gray-900(for='password', class='dark:text-white') User password
-                  input#password.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full(type='password', name='password' class='focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder='●●●●●●●●', required='')
-              
-              .flex.items-start.mb-6
-                  if msg
-                      label.ml-2.text-sm.font-medium.text-gray-900(for='remember', class='dark:text-gray-300')
-                          h6=msg
-                  else
-                    h6#msg.text-red-900.bg-red-200.rounded.px-6.py-4
-              
-              button#submit.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.w-full.px-5.text-center(type='submit', class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Add New User
-include script.html
+      main.overflow-hidden.mx-auto.max-w-7xl.py-6(class='sm:px-6 lg:px-8')
+        div.h-80.bg-gray-50.rounded-xl.text-center.justify-center.justify-items-center.float-left(class='w-full py-1')
+          .-mt-2(class='lg:mt-0 lg:w-full lg:flex-shrink-0')
+            .rounded-2xl.bg-gray-50.h-25.ring-1.ring-inset.float-left(class='ring-gray-900/5  justify-center lg:py-8 w-6/12')
+                .px-8
+                div.w-full.h-12.px-5.bg-gray-100(style='display:inline-block')
+                  h1.text-2xl.font-semibold.text-gray-600.float-left.pl-3 Full Name : 
+                    h2.text-base.text-gray-600.float-right.mt-2.ml-5=user.fullname
+                div.w-full.h-12.px-5.bg-gray-100(style='display:inline-block')
+                  h1.text-2xl.font-semibold.text-gray-600.float-left.pl-3 Email : 
+                    h2.text-base.text-gray-600.float-right.mt-2.ml-5=user.email
+                div.w-full.h-12.px-5.bg-gray-100(style='display:inline-block')
+                  h1.text-2xl.font-semibold.text-gray-600.float-left.pl-3 Date Of Created : 
+                    h2.text-base.text-gray-600.float-right.mt-2.ml-5=user.time
+                div.w-full.h-12.px-5.bg-gray-100(style='display:inline-block')
+                  h1.text-2xl.font-semibold.text-gray-600.float-left.pl-3 User Type : 
+                    h2.text-base.text-gray-600.float-right.mt-2.ml-5=user.useraccess
+                div.w-full.h-12.px-5.bg-gray-100(style='display:inline-block')
+                  h1.text-2xl.font-semibold.text-gray-600.float-left.pl-3 Status :
+                    if  user.activetedstatus==true
+                        h2.text-base.text-gray-600.float-right.mt-2.ml-5 User Has Actived
+                    else if user.activetedstatus==false
+                        h2.text-base.text-gray-600.float-right.mt-2.ml-5 User Not Actived
+
+            .rounded-2xl.bg-gray-50.h-25.ring-1.ring-inset.float-right(class='ring-gray-900/5  justify-center lg:py-8 w-2/12')
+              if user.activetedstatus==true
+                a.block(href="/admin/users/" + user.username +"/desactivate", class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 ml-5") desactivate
+              else if user.activetedstatus==false
+                a.block(href="/admin/users/" + user.username +"/activate", class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ml-5") Activate
+              //a.block(href="/admin/users/" + user.username +"/changemail", class="text-white bg-violet-700 hover:bg-violet-800 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-violet-600 dark:hover:bg-violet-700 focus:outline-none dark:focus:ring-violet-800") Change Email
+              //a.block(href="/admin/users/" + user.username +"/changeuseraccess", class="text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-rose-600 dark:hover:bg-rose-700 focus:outline-none dark:focus:ring-rose-800") Change User Access
+              a.block(href="/admin/users/" + user.username +"/edit", class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800") Edit
+              a.block(href="/admin/users/" + user.username +"/delete", class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900") Delete
+                    
+        div.w-full.h-15.bg-gray-200.inline-block.py-5.px-2.rounded.mt-2.text-center
+          a(href="/admin/users/" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800") Display All Users
+          a(href="/admin/users/add" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700")  Add New User
