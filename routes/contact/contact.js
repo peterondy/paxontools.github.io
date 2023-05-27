@@ -18,7 +18,7 @@ contact.post('/contact', async(req,res)=>{
         }
     })
     let info =      await transporter.sendMail({
-        from:       `"You Have A New Message From Contact Page In Paxon Tools : " <mysocialmedi123@gmail.com> <${req.body.email}>`, // sender address
+        from:       `<mysocialmedi123@gmail.com> <${req.body.email}>`, // sender address
         to:         "ramzi@ramziben.live, ramzibenchadi5@gmail.com", // list of receivers
         subject:    `${req.body.subject}`,
         text:       `You Have A New Message From Contact Page In Paxon Tools`,
